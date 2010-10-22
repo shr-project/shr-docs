@@ -1,0 +1,96 @@
+<project default="all">
+
+    <property name="INSTALL.DIR" value="install"/>
+    <property name="FOP.ZIP" value="fop-1.0-bin.zip"/>
+    <property name="FOP.DIR" value="fop-1.0"/>
+    <property name="DOCBOOKXSL" value="docbook-xsl-1.75.2"/>
+    <property name="DOCBOOKXML.DIR" value="docbook-xml-4.5"/>
+    <property name="DOCBOOKXML.ZIP" value="docbook-xml-4.5.zip"/>
+    <property name="OFFOHYPHENATION.ZIP" value="offo-hyphenation-fop-stable_v1.2.zip"/>
+    <property name="SAXON.DIR" value="saxon6-5-5"/>
+    <property name="SAXON.ZIP" value="saxon6-5-5.zip"/>
+    <property name="XMLRESOLVER.DIR" value="xml-commons-resolver-1.2"/>
+    <property name="XMLRESOLVER.ZIP" value="xml-commons-resolver-1.2.zip"/>
+    <property name="XERCES.ZIP" value="Xerces-J-bin.2.10.0.zip"/>
+    <property name="XERCES.DIR" value="xerces-2_10_0"/>
+    
+    
+    <target name="init">
+        <mkdir dir="${INSTALL.DIR}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${INSTALL.DIR}"/>
+    </target>
+
+    <!--FOP-->
+    <target name="check-fop" depends="init">
+        <available file="${INSTALL.DIR}/${FOP.DIR}" property="fop.installed"/>
+    </target>
+
+    <target name="inst-fop" depends="check-fop" unless="fop.installed">
+        <unzip src="${FOP.ZIP}" dest="${INSTALL.DIR}"/>
+    </target>
+
+    <!--DOCBOOK-XSL-->
+    <target name="check-docbookxsl" depends="init">
+        <available file="${INSTALL.DIR}/${DOCBOOKXSL}" property="docbookxsl.installed"/>
+    </target>
+
+    <target name="inst-docbookxsl" depends="check-docbookxsl" unless="docbookxsl.installed">
+        <unzip src="${DOCBOOKXSL}.zip" dest="${INSTALL.DIR}"/>
+    </target>
+
+    <!--DOCBOOK-XML-->
+    <target name="check-docbookxml" depends="init">
+        <available file="${INSTALL.DIR}/${DOCBOOKXML.DIR}" property="docbookxml.installed"/>
+    </target>
+
+    <target name="inst-docbookxml" depends="check-docbookxml" unless="docbookxml.installed">
+        <mkdir dir="${INSTALL.DIR}/${DOCBOOKXML.DIR}"/>
+        <unzip src="${DOCBOOKXML.DIR}/${DOCBOOKXML.ZIP}" dest="${INSTALL.DIR}/${DOCBOOKXML.DIR}"/>
+    </target>
+
+    <!--OFFO HYPHENATION-->
+    <target name="check-offohyphenation" depends="init">
+        <available file="${INSTALL.DIR}/offo-hyphenation-fop-stable" property="offohyphenation.installed"/>
+    </target>
+
+    <target name="inst-offohyphenation" depends="check-offohyphenation" unless="offohyphenation.installed">
+        <unzip src="${OFFOHYPHENATION.ZIP}" dest="${INSTALL.DIR}"/>
+    </target>
+
+    <!--SAXON-->
+    <target name="check-saxon" depends="init">
+        <available file="${INSTALL.DIR}/${SAXON.DIR}" property="saxon.installed"/>
+    </target>
+
+    <target name="inst-saxon" depends="check-saxon" unless="saxon.installed">
+        <mkdir dir="${INSTALL.DIR}/${SAXON.DIR}"/>
+        <unzip src="${SAXON.DIR}/${SAXON.ZIP}" dest="${INSTALL.DIR}/${SAXON.DIR}"/>
+    </target>
+
+    <!--XML RESOLVER-->
+    <target name="check-xmlresolver" depends="init">
+        <available file="${INSTALL.DIR}/${XMLRESOLVER.DIR}" property="xmlresolver.installed"/>
+    </target>
+
+    <target name="inst-xmlresolver" depends="check-xmlresolver" unless="xmlresolver.installed">
+        <mkdir dir="${INSTALL.DIR}/${XMLRESOLVER.DIR}"/>
+        <unzip src="${XMLRESOLVER.ZIP}" dest="${INSTALL.DIR}"/>
+    </target>
+
+    <!--XML RESOLVER-->
+    <target name="check-xerces" depends="init">
+      <available file="${INSTALL.DIR}/${XERCES.DIR}" property="XERCES.installed"/>
+    </target>
+
+    <target name="inst-xerces" depends="check-xerces" unless="xerces.installed">
+      <unzip src="${XERCES.ZIP}" dest="${INSTALL.DIR}"/>
+    </target>
+
+    <target name="all" depends="inst-fop,inst-docbookxsl,inst-docbookxml,inst-offohyphenation,inst-saxon,inst-xmlresolver,inst-xerces">
+    </target>
+
+</project>
+

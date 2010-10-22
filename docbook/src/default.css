@@ -1,0 +1,20 @@
+/* <guibutton> look similar to NST WUI buttons */
+
+.guibutton {
+  font-family: arial,sans-serif;
+  font-weight: bold;
+  font-size: 75%;
+  color: #000000;
+  background-color: #AAAAAA;
+  padding-left: 4pt;
+  padding-right: 4pt;
+  border-style: outset;
+  border-left-width: medium;
+  border-left-color: #666666;
+  border-top-width: medium;
+  border-top-color: #7777777;
+  border-right-width: medium;
+  border-right-color: #444444;
+  border-bottom-width: medium;
+  border-bottom-color: #555555;
+}

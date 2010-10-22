@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+                 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<chapter id="chapter_getting_shr">
+    <title>Getting SHR Image</title>
+    <para>
+      This chapter describes the ways to receive the SHR software.
+    </para>
+    <section>
+        <title>Download a pre compiled image</title>
+        <para>
+            tbd
+        </para>
+      </section>
+    <section>
+        <title>Compile your on image</title>
+        <para>
+            tbd
+        </para>
+    </section>
+</chapter>

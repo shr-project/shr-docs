@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"[
+        <!ENTITY ent_platform SYSTEM "platform.xml">
+]>
+
+<book id="user_manual" lang="en">
+  <title>User Manual</title>
+
+  <bookinfo>
+    <productname><!--trademark class="registered">SHR</trademark-->Stable Hybrid Release</productname>
+    <releaseinfo>Software Release ???</releaseinfo>
+    <edition>&ent_platform;</edition>
+    <publisher>SHR Project</publisher>
+    <corpauthor>
+	    <inlinemediaobject>
+	      <imageobject role="html">
+	          <imagedata scale="50" fileref="shr-titlelogo.png"/>
+	      </imageobject>
+	      <imageobject role="fo">
+	          <imagedata depth="15cm" fileref="shr-titlelogo.png"/>
+	      </imageobject>
+	    </inlinemediaobject>
+    </corpauthor>
+
+    <copyright>
+      <year>2010</year>
+      <holder>SHR Project</holder>
+    </copyright>
+</bookinfo>
+
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-introduction.xml" />
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-getting-shr.xml" />
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-installation.xml" />
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-first-boot.xml" />
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-configuration.xml" />
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-license.xml" />
+</book>
+

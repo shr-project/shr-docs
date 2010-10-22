@@ -1,0 +1,175 @@
+<project name="manual" default="all">
+
+  <property file="build.properties"/>
+
+    <property name="EXTERNAL_ROOT" value="../external/install"/>
+
+
+    <property name="DOCBOOK_XML_ROOT" value="${EXTERNAL_ROOT}/docbook-xml-4.5"/>
+    <property name="DOCBOOK_XSL_ROOT" value="${EXTERNAL_ROOT}/docbook-xsl-1.75.2"/>
+    <property name="FOP_ROOT" value="${EXTERNAL_ROOT}/fop-1.0"/>
+    <property name="FOP_EVAL_ROOT" value="${EXTERNAL_ROOT}/fop-0.95beta"/>
+    <property name="OFFO_HYPHENATION_FOP_ROOT" value="${EXTERNAL_ROOT}/offo-hyphenation-fop-stable"/>
+    <property name="SAXON_ROOT" value="${EXTERNAL_ROOT}/saxon6-5-5"/>
+    <property name="XML_RESOLVER_ROOT" value="${EXTERNAL_ROOT}/xml-commons-resolver-1.2"/>
+    <property name="XERCES_ROOT" value="${EXTERNAL_ROOT}/xerces-2_10_0"/>    
+
+    <fail message="Please define property CONFIGURATION" unless="CONFIGURATION"/>
+    
+    <!-- directory definition for build directory, nothing from here should be checked in-->
+    <property name="DIST_BASE" value="../GENERATE"/>
+    <property name="DIST_DIR" value="${DIST_BASE}/${CONFIGURATION}"/>
+
+    <!-- this is the directory where the result is copied to -->
+
+    <property name="OUTPUT_DIR" value="${OUTPUT_BASE}/${CONFIGURATION}"/>
+    <property name="OUTPUT_ZIP" value="${OUTPUT_HTML}_webhelp.zip"/>
+
+
+    <property name="CONDITIONSFILE" value="../configurations/${CONFIGURATION}.properties"/>
+    <loadproperties srcFile="${CONDITIONSFILE}"/>
+
+    <property name="PROFILE_CONDITIONS" value="${PROFILE_CONDITIONS_PLATFORM}"/>
+
+    <path id="fop.class.path">
+        <fileset dir="${FOP_ROOT}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${FOP_ROOT}/build">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${OFFO_HYPHENATION_FOP_ROOT}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+
+    <target name="init">
+        <mkdir dir="${OUTPUT_DIR}"/>
+    </target>
+
+    <target name="titlepage-templates">
+        <loadproperties srcFile="${CONDITIONSFILE}"/>
+
+        <saxon args="-o titlepage.shr-manual.xsl titlepage.spec.shr-manual.xml ${DOCBOOK_XSL_ROOT}/template/titlepage.xsl"/>
+    </target>
+
+    <target name="manual-fo-xml" >
+        <loadproperties srcFile="${CONDITIONSFILE}"/>
+
+        <mkdir dir="${DIST_DIR}/pdf"/>
+
+        <saxon args="-o ${DIST_DIR}/pdf/${CONFIGURATION}-fo.xml ${ROOT_DOCUMENT} ${DOCBOOK_XSL_ROOT}/profiling/profile.xsl profile.role=fo;bold profile.condition=${PROFILE_CONDITIONS}"/>
+    </target>
+
+    <target name="manual-fo" depends="manual-fo-xml,titlepage-templates">
+        <saxon args="-o ${DIST_DIR}/pdf/${CONFIGURATION}.fo ${DIST_DIR}/pdf/${CONFIGURATION}-fo.xml custom-fo.xsl draft.mode=no keep.relative.image.uris=1 'formal.title.placement=table after figure after'"/>
+    </target>
+
+    <target name="check-manual-pdf" depends="manual-fo">
+        <uptodate property="build-manual-pdf.notRequired"
+                  srcfile="${DIST_DIR}/pdf/${CONFIGURATION}.fo"
+                  targetfile="${DIST_DIR}/${OUTPUT_PDF}"/>
+    </target>
+
+    <target name="manual-pdf" depends="check-manual-pdf" unless="build-manual-pdf.notRequired">
+        <java classname="org.apache.fop.cli.Main" fork="true" failonerror="true" maxmemory="256m">
+            <arg line="${DIST_DIR}/pdf/${CONFIGURATION}.fo ${DIST_DIR}/${OUTPUT_PDF}"/>
+            <classpath refid="fop.class.path"/>
+        </java>
+
+       <copy file="${DIST_DIR}/${OUTPUT_PDF}"
+         todir="${OUTPUT_DIR}"
+         overwrite="true">
+       </copy>
+
+    </target>
+
+    <!--HTML-->
+    <target name="manual-html-xml">
+        <mkdir dir="${DIST_DIR}/common-html"/>
+
+        <saxon args="-o ${DIST_DIR}/common-html/${CONFIGURATION}-html.xml ${ROOT_DOCUMENT} ${DOCBOOK_XSL_ROOT}/profiling/profile.xsl profile.role=html;bold profile.condition=${PROFILE_CONDITIONS}"/>
+
+        <saxon args="-o ${DIST_DIR}/common-html/html-pictures.txt ${DIST_DIR}/common-html/${CONFIGURATION}-html.xml picturesflter.xsl"/>
+    </target>
+
+
+    <target name="check-manual-html" depends="manual-html-xml">
+        <uptodate property="build-manual-html.notRequired"
+                  srcfile="${DIST_DIR}/common-html/${CONFIGURATION}-html.xml"
+                  targetfile="${DIST_DIR}/html/index.html"/>
+    </target>
+
+    <target name="manual-html" depends="check-manual-html" unless="build-manual-html.notRequired">
+        <mkdir dir="${DIST_DIR}/html"/>
+
+        <saxon args="-o ${DIST_DIR}/html/index.html ${DIST_DIR}/common-html/${CONFIGURATION}-html.xml custom-html.xsl base.dir=${DIST_DIR}/html/ use.id.as.filename=1 chunk.quietly=1 'formal.title.placement=table after figure after'"/>
+
+        <copy todir="${DIST_DIR}/html">
+            <fileset dir="." includes="**/*.css"/>
+            <fileset dir="." includes="images/*.png"/>
+        </copy>
+
+        <copy todir="${DIST_DIR}/html/">
+            <fileset dir="." includesfile="${DIST_DIR}/common-html/html-pictures.txt"/>
+        </copy>
+    </target>
+
+    <target name="check-manual-html-zip" depends="manual-html">
+        <uptodate property="build-manual-html-zip.notRequired"
+                  srcfile="${DIST_DIR}/html/index.html"
+                  targetfile="${DIST_DIR}/${OUTPUT_ZIP}"/>
+    </target>
+
+    <target name="manual-html-zip" depends="check-manual-html-zip" unless="build-manual-html-zip.notRequired">
+        <zip destfile="${DIST_DIR}/${OUTPUT_ZIP}">
+            <zipfileset dir="${DIST_DIR}/html" prefix="${OUTPUT_HTML}"/>
+        </zip>
+
+        <copy file="${DIST_DIR}/${OUTPUT_ZIP}" todir="${OUTPUT_DIR}" overwrite="true">
+        </copy>
+    </target>
+
+    <target name="all" depends="init,manual-html-zip,manual-pdf">
+    </target>
+
+    <target name="clean">
+        <delete dir="${DIST_BASE}"/>
+        <delete file="titlepage.shr-manual.xsl"/>
+        <delete>
+            <fileset dir="." includes="**/*-unprofiled.xml"/>
+        </delete>
+    </target>
+
+
+    <macrodef name="saxon">
+        <attribute name="args"/>
+        <sequential>
+            <java classname="com.icl.saxon.StyleSheet"
+                  fork="true"
+                  failonerror="true">
+                <classpath>
+                    <pathelement location="${SAXON_ROOT}/saxon.jar"/>
+                    <pathelement location="${XERCES_ROOT}/xercesImpl.jar"/>
+                    <pathelement location="${XML_RESOLVER_ROOT}/resolver.jar"/>
+                </classpath>
+                <jvmarg value="-Dxml.catalog.files=${DOCBOOK_XML_ROOT}/catalog.xml;${DOCBOOK_XSL_ROOT}/catalog.xml"/>
+                <jvmarg value="-Dxml.catalog.staticCatalog=true"/>
+                <jvmarg value="-Dxml.catalog.className=org.apache.xml.resolver.Resolver"/>
+                <jvmarg value="-Dxml.catalog.verbosity=1"/>
+                <jvmarg value="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+                <jvmarg value="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+                <jvmarg value="-Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+                <arg value="-x"/>
+                <arg value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+                <arg value="-y"/>
+                <arg value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+                <arg value="-r"/>
+                <arg value="org.apache.xml.resolver.tools.CatalogResolver"/>
+                <arg line="@{args}"/>
+            </java>
+        </sequential>
+    </macrodef>
+
+</project>

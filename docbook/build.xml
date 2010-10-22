@@ -1,0 +1,55 @@
+<project default="all">
+
+    <property name="BUILDFILEPATH" value="src"/>
+
+    <property name="ROOT.XML" value="master-document.xml"/>
+    
+    <target name="init">
+      <tstamp />
+        <property name="ROOT_DOCUMENT" value="${MASTER.XML}"/>
+        <property name="OUTPUT_HTML" value="HTML"/>
+        <property name="OUTPUT_BASE" value="./../OUTPUT"/>
+        <property name="OUTPUT_PDF"  value="manual.pdf"/>
+    </target>
+
+
+    <target name="clean" depends="init">
+        <ant  dir="${BUILDFILEPATH}" target="clean">
+            <property name="CONFIGURATION" value="manual-freerunner"/>
+        </ant>
+      <delete>
+          <fileset dir="OUTPUT">
+              <include name="**/*.pdf" />
+              <include name="**/*.zip" />
+          </fileset>
+      </delete>
+    </target>
+
+
+
+  <target name="all" depends="manual-freerunner,manual-n900">
+  </target>
+
+
+  <!-- FREERUNNER -->
+  <target name="manual-freerunner" depends="init">
+    <ant dir="${BUILDFILEPATH}">
+        <property name="CONFIGURATION" value="manual-freerunner" />
+        <property name="ROOT_DOCUMENT" value="${ROOT.XML}"/>
+        <property name="OUTPUT_HTML" value="html_manual_freerunner"/>
+        <property name="OUTPUT_BASE" value="./../OUTPUT"/>
+        <property name="OUTPUT_PDF"  value="SHR-User-Manual-Freerunner.pdf"/>
+    </ant>
+  </target>
+
+  <!-- N900 -->
+  <target name="manual-n900" depends="init">
+    <ant dir="${BUILDFILEPATH}">
+        <property name="CONFIGURATION" value="manual-n900" />
+        <property name="ROOT_DOCUMENT" value="${ROOT.XML}"/>
+        <property name="OUTPUT_HTML" value="html_manual_n900"/>
+        <property name="OUTPUT_BASE" value="./../OUTPUT"/>
+        <property name="OUTPUT_PDF"  value="SHR-User-Manual-n900.pdf"/>
+    </ant>
+  </target>
+</project>
