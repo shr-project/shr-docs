@@ -27,13 +27,13 @@
       <year>2010</year>
       <holder>SHR Project</holder>
     </copyright>
-</bookinfo>
+  </bookinfo>
 
-<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-introduction.xml" />
-<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-getting-shr.xml" />
-<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-installation.xml" />
-<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-first-boot.xml" />
-<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-configuration.xml" />
-<xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-license.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-introduction.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-getting-shr.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-installation.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-first-boot.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-configuration.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"  href="chapter-license.xml" />
 </book>
 

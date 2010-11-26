@@ -4,14 +4,99 @@
 <chapter id="chapter_installation">
     <title>Installation</title>
     <para>
-        This chapter descibes the SHR installation.
+        This chapter describes the SHR installation.
     </para>
 
     <section>
-        <title>Installation on a SD card</title>
+        <title>Flashing QI boot loader</title>
+        <para>
+        </para>
+    </section>
+    <section>
+        <title>Install SHR Image on a SD card</title>
         <para>
             If you want to install SHR on SD card you should read this section.
         </para>
+        <section>
+            <title>Prepare SD Card</title>
+            <para>
+                Before the SD card can be used, it must be partitioned and
+                formatted.
+            </para>
+            <bridgehead>Find the device name of the SD card</bridgehead>
+            <para>
+                For the further installation process the device name of the SD
+                card must be known. A simple test will provide the name.
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Please open a terminal (also known as console) as
+                            normal user. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Type in
+                            <programlisting>cat /proc/partitions</programlisting>,
+                            this will print the list of currently known devices and
+                            partitions. An output may look like this:
+                            <programlisting>
+nschle85@dual-wohnzimmer:~$ cat /proc/partitions 
+major minor  #blocks  name
+
+   8       64  244198584 sde
+   8       65   92156841 sde1
+   8       66  145998720 sde2
+   8       67          1 sde3
+   8       69    6040408 sde5
+nschle85@dual-wohnzimmer:~$
+                            </programlisting>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Now plug the SD card into the SD card reader and
+                            type again:
+                            <programlisting>cat /proc/partitions</programlisting>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Now compare the result of previous output with the
+                            current output:
+                            <programlisting>
+nschle85@dual-wohnzimmer:~$ cat /proc/partitions 
+major minor  #blocks  name
+
+   8       64  244198584 sde
+   8       65   92156841 sde1
+   8       66  145998720 sde2
+   8       67          1 sde3
+   8       69    6040408 sde5
+   8       80    7977472 sdf
+   8       81    7976021 sdf1
+nschle85@dual-wohnzimmer:~$
+                            </programlisting>
+                            In this case
+                            <programlisting>
+   8       80    7977472 sdf
+   8       81    7976021 sdf1
+                            </programlisting>
+                            was the difference between both outputs. So the
+                            device name of the SD card is
+                            <quote>/dev/sdf</quote>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            
+        </section>
+        <section>
+            <title>Copy SHR Image onto SD card</title>
+            <para>
+            </para>
+        </section>
+        
     </section>
 </chapter>
 

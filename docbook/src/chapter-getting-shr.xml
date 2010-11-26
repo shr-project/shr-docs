@@ -2,14 +2,39 @@
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
                  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <chapter id="chapter_getting_shr">
-    <title>Getting SHR Image</title>
+    <title>Getting SHR Software</title>
     <para>
-      This chapter describes the ways to receive the SHR software.
+      This chapter describes the ways to receive the SHR software (image and
+      boot loader). For installing SHR distribution you need a SHR image and a
+      boot loader.
     </para>
     <section>
-        <title>Download a pre compiled image</title>
+        <title>Download a pre compiled image and boot loader</title>
         <para>
-            tbd
+            Downloading a pre compiled image and boot loader is the fastest
+            and easiest way to dive into SHR. SHR provides different pre
+            compiled images on its web site:
+            <ulink url="http://build.shr-project.org/shr-unstable/images/om-gta02/">SHR Images</ulink>
+            You can choose between:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <ulink url="http://build.shr-project.org/shr-unstable/images/om-gta02/full-om-gta02.tar.gz">SHR Full Image</ulink>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <ulink url="http://build.shr-project.org/shr-unstable/images/om-gta02/lite-om-gta02.tar.gz">SHR Lite Image</ulink>.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            For the first steps downloading the <quote>Lite Image</quote> is sufficient.
+        </para>
+        <para>
+            Install <quote>QI</quote> as default boot loader is a good choice.
+            The download can be found under:
+            <ulink url="http://build.shr-project.org/shr-unstable/images/om-gta02/">SHR boot loader</ulink>,
+            the filename is like <quote>qi-s3c2442-*.udfu</quote>.
         </para>
       </section>
     <section>
