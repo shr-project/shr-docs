@@ -33,8 +33,7 @@
         <para>
             Install <quote>QI</quote> as default boot loader is a good choice.
             The download can be found under:
-            <ulink url="http://build.shr-project.org/shr-unstable/images/om-gta02/">SHR boot loader</ulink>,
-            the filename is like <quote>qi-s3c2442-*.udfu</quote>.
+            <ulink url="http://build.shr-project.org/shr-unstable/images/om-gta02/qi-s3c2442.udfu">SHR boot loader</ulink>,
         </para>
       </section>
     <section>
