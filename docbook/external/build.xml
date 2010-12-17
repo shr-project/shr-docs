@@ -3,7 +3,7 @@
     <property name="INSTALL.DIR" value="install"/>
     <property name="FOP.ZIP" value="fop-1.0-bin.zip"/>
     <property name="FOP.DIR" value="fop-1.0"/>
-    <property name="DOCBOOKXSL" value="docbook-xsl-1.75.2"/>
+    <property name="DOCBOOKXSL" value="docbook-xsl-1.76.1"/>
     <property name="DOCBOOKXML.DIR" value="docbook-xml-4.5"/>
     <property name="DOCBOOKXML.ZIP" value="docbook-xml-4.5.zip"/>
     <property name="OFFOHYPHENATION.ZIP" value="offo-hyphenation-fop-stable_v1.2.zip"/>

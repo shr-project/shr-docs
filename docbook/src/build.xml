@@ -6,7 +6,7 @@
 
 
     <property name="DOCBOOK_XML_ROOT" value="${EXTERNAL_ROOT}/docbook-xml-4.5"/>
-    <property name="DOCBOOK_XSL_ROOT" value="${EXTERNAL_ROOT}/docbook-xsl-1.75.2"/>
+    <property name="DOCBOOK_XSL_ROOT" value="${EXTERNAL_ROOT}/docbook-xsl-1.76.1"/>
     <property name="FOP_ROOT" value="${EXTERNAL_ROOT}/fop-1.0"/>
     <property name="FOP_EVAL_ROOT" value="${EXTERNAL_ROOT}/fop-0.95beta"/>
     <property name="OFFO_HYPHENATION_FOP_ROOT" value="${EXTERNAL_ROOT}/offo-hyphenation-fop-stable"/>
