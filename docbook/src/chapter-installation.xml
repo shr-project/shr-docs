@@ -92,11 +92,48 @@ nschle85@dual-wohnzimmer:~$
             
         </section>
         <section>
-            <title>Copy SHR Image onto SD card</title>
+            <title>Partition the SD Card</title>
             <para>
+                In the previous example the SD card contained one partition.
+                Please configure your SD card to have one partition using the
+                whole space.
             </para>
         </section>
-        
+        <section>
+            <title>Create file system on the SD Card</title>
+            <para>
+                One choice is to use EXT3 file system. It''s a journaling file
+                system, so a power loss of your phone should not destroy all
+                your saved data.
+                <warning>
+                    Please use this file system only on your SD card because
+                    it writes very often on SD card and that is not what
+                    flash memory is made for. But SD cards are very cheap, and
+                    destroying internal flash is very expensive.
+                </warning>
+                To format your SD card execute:
+                <caution>
+                    Please check, that you are using the right partition name !
+                    If you use the wrong partition, you may loose important
+                    data !
+                </caution>
+                <programlisting>
+nschle85@dual-wohnzimmer:~$ sudo mkfs.ext3 /dev/sdf1
+                </programlisting>
+            </para>
+        </section>
+        <section>
+            <title>Copy SHR Image onto SD card</title>
+            <para>
+                Now you are ready to mount your SD card partition (please
+                create the mount point before)and copy your SHR image to your
+                SD card:
+                <programlisting>
+nschle85@dual-wohnzimmer:~$ sudo mount -t ext3 /dev/sdf1 /mnt/sdf1
+nschle85@dual-wohnzimmer:~$ sudo tar -C /mnt/sdf1 -xzf /path/to/your/image/lite-om-gta02.tar.gz
+                </programlisting> 
+            </para>
+        </section>        
     </section>
 </chapter>
 
