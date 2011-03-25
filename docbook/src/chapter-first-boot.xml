@@ -6,4 +6,63 @@
     <para>
       This chapter guides you thru the first configuration process.
     </para>
+    <section>
+    <title>The first time SHR wizard</title>
+    <section>
+        <title>Welcome</title>
+        <para>
+        <figure id="shr_wizard_welcome_freerunner">
+            <title>SHR wizard - Welcome</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/freerunner/shr-wizard-welcome.png"
+                               scale="50"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        </para>
+    </section>
+    <section>
+        <title>Local numbers settigs</title>
+        <para>
+        <figure id="shr_wizard_local_numbers_freerunner">
+            <title>SHR wizard - Local numbers settings</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/freerunner/shr-wizard-local-numbers.png"
+                               scale="50"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        </para>
+    </section>
+    <section>
+        <title>GPRS connection data</title>
+        <para>
+        <figure id="shr_wizard_gprs_freerunner">
+            <title>SHR wizard - GPRS connection data</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/freerunner/shr-wizard-gprs.png"
+                               scale="50"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        </para>
+    </section>
+    <section>
+        <title>Root password</title>
+        <para>
+        <figure id="shr_wizard_rootpassword_freerunner">
+            <title>SHR wizard - Root password</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/freerunner/shr-wizard-rootpassword.png"
+                               scale="50"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        </para>
+    </section>
+    </section>
 </chapter>
