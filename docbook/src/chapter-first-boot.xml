@@ -2,12 +2,18 @@
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
                  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <chapter id="chapter_first_boot">
-    <title>Switch on for first time</title>
+    <title>Booting first time</title>
     <para>
-      This chapter guides you thru the first configuration process.
+        This chapter guides you thru the first configuration process on first
+        boot.
     </para>
     <section>
     <title>The first time SHR wizard</title>
+    <para>
+        After booting a fresh installed SHR image the SHR Wizard will be
+        started automatically and guides you thru the initial configuration
+        process.
+    </para>
     <section>
         <title>Welcome</title>
         <para>
@@ -20,6 +26,9 @@
                 </imageobject>
             </mediaobject>
         </figure>
+        This is is the initial page of the SHR Wizard. Please press 
+        <guibutton>Next</guibutton> to start the initial configuration of your
+        mobile device.
         </para>
     </section>
     <section>

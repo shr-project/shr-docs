@@ -41,7 +41,7 @@
                             this will print the list of currently known devices and
                             partitions. An output may look like this:
                             <programlisting>
-nschle85@dual-wohnzimmer:~$ cat /proc/partitions 
+user@computer:~$ cat /proc/partitions 
 major minor  #blocks  name
 
    8       64  244198584 sde
@@ -49,7 +49,7 @@ major minor  #blocks  name
    8       66  145998720 sde2
    8       67          1 sde3
    8       69    6040408 sde5
-nschle85@dual-wohnzimmer:~$
+user@computer:~$
                             </programlisting>
                         </para>
                     </listitem>
@@ -65,7 +65,7 @@ nschle85@dual-wohnzimmer:~$
                             Now compare the result of previous output with the
                             current output:
                             <programlisting>
-nschle85@dual-wohnzimmer:~$ cat /proc/partitions 
+user@computer:~$ cat /proc/partitions 
 major minor  #blocks  name
 
    8       64  244198584 sde
@@ -75,7 +75,7 @@ major minor  #blocks  name
    8       69    6040408 sde5
    8       80    7977472 sdf
    8       81    7976021 sdf1
-nschle85@dual-wohnzimmer:~$
+user@computer:~$
                             </programlisting>
                             In this case
                             <programlisting>
@@ -118,7 +118,7 @@ nschle85@dual-wohnzimmer:~$
                     data !
                 </caution>
                 <programlisting>
-nschle85@dual-wohnzimmer:~$ sudo mkfs.ext3 /dev/sdf1
+user@computer:~$ sudo mkfs.ext3 /dev/sdf1
                 </programlisting>
             </para>
         </section>
@@ -129,11 +129,15 @@ nschle85@dual-wohnzimmer:~$ sudo mkfs.ext3 /dev/sdf1
                 create the mount point before)and copy your SHR image to your
                 SD card:
                 <programlisting>
-nschle85@dual-wohnzimmer:~$ sudo mount -t ext3 /dev/sdf1 /mnt/sdf1
-nschle85@dual-wohnzimmer:~$ sudo tar -C /mnt/sdf1 -xzf /path/to/your/image/lite-om-gta02.tar.gz
+user@computer:~$ sudo mount -t ext3 /dev/sdf1 /mnt/sdf1
+user@computer:~$ sudo tar -C /mnt/sdf1 -xzf /path/to/your/image/lite-om-gta02.tar.gz
                 </programlisting> 
             </para>
         </section>        
     </section>
+    <para>
+        Now the image is ready to boot. Please plug it into your phone and
+        enjoy the boot process. 
+    </para>
 </chapter>
 
